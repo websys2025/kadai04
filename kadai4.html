@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="utf-8">
-        <title>演習課題3-4：自動販売機</title>
+        <meta charset="urf-8">
+        <title>演習課題4-1：自動販売機（クラス）</title>
     </head>
     <body>
         <script>
@@ -18,26 +18,41 @@
                 { id: 8, name: "紅茶", price: 140, stock: 6 }
             ]
 
-            // 商品一覧の表示関数
-            function showItemList() {
-                console.log("商品は以下の" + items.length + "種類です。");
+            // 商品用のクラス定義
+            class Item {
+                static number = 1;
+                constructor(name, price, stock) {
+                    this.id = Item.number;
+                    this.name = name;
+                    this.price = price;
+                    this.stock = stock;
+                    Item.number++;
+                }
 
-                // 配列の内容を項目毎に出力
+                // 商品一覧の表示関数
+                static showItemList(list) {
+                    console.log("商品は以下の" + Item.number + "種類です。");
+
+                    // 配列の内容を項目毎に出力
+                    // ここにコードを書く
+                    console.log(""); // 空行の出力
+                }
+                
+                // 商品購入の関数
+                buyItem() {
+                    console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
+                    // ここにコードを書く
+                }
+            } // End of Item class
+
+            const item_list = new Array(items.length); // 商品リストの作成
+            for (let i=0; i<items.length; i++) {
+                // ループ処理の中でItemクラスのコンストラクタを呼び出す
                 // ここにコードを書く
-                console.log(""); // 空行の出力
             }
 
-            // 商品購入の関数
-            function buyItem(no) {
-                // ここにコードを書く
-                showItemList(); // 商品一覧の表示関数呼び出し
-            }
-
-            showItemList(); // 商品一覧の表示関数呼び出し
-            buyItem(3); // 商品購入の関数呼び出し
-
-            buyItem(5); // 商品購入の関数呼び出し
-            buyItem(5); // 商品購入の関数呼び出し
+            Item.showItemList(item_list);
+            item_list[7].buyItem();
 
         </script>
     </body>
